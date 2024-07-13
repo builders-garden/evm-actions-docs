@@ -1,11 +1,11 @@
 import { defineConfig } from 'vocs'
 
 export default defineConfig({
-  title: 'Docs',
+  title: 'EVM Actions',
   sidebar: [
     {
-      text: 'Getting Started',
-      link: '/getting-started',
+      text: 'What are EVM Actions?',
+      link: '/what-are-evm-actions',
     },
     {
       text: 'Example',
