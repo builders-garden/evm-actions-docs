@@ -8,7 +8,7 @@ export default defineConfig({
       link: '/getting-started',
     },
     {
-      text: 'Action starter kit',
+      text: 'Actions starter kit',
       link: '/starter-kit',
     },
     {
