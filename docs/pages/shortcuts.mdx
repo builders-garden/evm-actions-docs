@@ -1,0 +1,15 @@
+# **⚡ Shortcuts**
+
+**Shortcuts** are browser extensions capable of detecting **EVM Actions** links in a web page and displaying them to the user in a user-friendly way.
+
+It reads for content in the page and detects EVM Actions links. When it finds one, it renders the EVM Action metadata in the following way:
+
+- the `icon` field gets rendered as a 400x400px image;
+- it displays the EAL as a clickable `<a>` tag;
+- displays both the `title` and `description` of the EVM action;
+- if only one `label` is provided, then only 1 button is rendered;
+- if no `label` is provided but `links` is, then a button (+ parameters) is rendered for each link in the `links` array.
+
+:::info
+###### You can check the Shortcuts code here [External link](https://github.com/builders-garden/shortcut-extension)
+:::

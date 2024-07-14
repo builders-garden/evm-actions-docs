@@ -1,0 +1,118 @@
+## ⚡️ Transaction 
+
+| Name          | Description                                                                   | Method  | Required |
+| ------------- |:-----------------------------------------------------------------------------:| -------:| --------:|
+| targetUrl     | API endpoint return a list of transactions to execute                         |  POST   | true     |
+| postUrl       | Web page where user will be redirected once the transaction has been executed |   GET   | true     |
+
+
+**Notes:**
+
+- Target URL should return a JSON like this
+
+```bash [typescript]
+interface TxTargetURLResponse {
+    chainId: string;
+    to: string;
+    data: string;
+    value: string;
+}
+
+const response: TxTargetURLResponse[] = [
+	{
+	    chainId: "8453",
+	    to: "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+	    data: "<calldata>",
+	    value: "<numeric>",
+	},
+	...,
+	{
+	    chainId: "8453",
+	    to: "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+	    data: "<calldata>",
+	    value: "<numeric>",
+	}
+]
+```
+- Post URL redirect will include a “txHash” as query parameter
+
+```bash [typescript]
+GET https://example.com/tx-success?txHash=0xfdb03edd08492bee7dd261e3975f78350d7119a85a3016c7bd3e266e079ccf8f
+```
+
+
+## 🖋️ Signature 
+
+| Name          | Description                                                                   | Method  | Required |
+| ------------- |:-----------------------------------------------------------------------------:| -------:| --------:|
+| targetUrl     | API endpoint return the message to sign                                       |  POST   | true     |
+| postUrl       | API endpoint executing tasks with the signature                               |   POST  | true     |
+
+**Notes:**
+
+- Target URL should return a JSON like this
+```bash [typescript]
+interface SignatureTargetURLResponse {
+    message: string | Object;
+}
+
+const response: SignatureTargetURLResponse = {
+    message: "Please sign this message"
+    // or an object following eth_signTypedData_v4
+    message: {
+	    ...
+    }
+}
+```
+
+- Post URL API call will include the following body parameters
+```bash [typescript]
+POST https://example.com/signature-success
+{
+	"signature":"signedMessage"
+	"message": "Please sign this message",
+	"address": "0x1358155a15930f89eBc787a34Eb4ccfd9720bC62"
+}
+```
+
+## 🪄 1-click login 
+
+| Name          | Description                                                                   | Method  | Required |
+| ------------- |:-----------------------------------------------------------------------------:| -------:| --------:|
+| targetUrl     | API endpoint where to fetch the SIWE login message to sign                    |  POST   | true     |
+| postUrl       | URL of the app where we want the user to login                                |  GET    | true     |
+
+**Notes:**
+
+- Target URL should return a JSON supporting
+
+```bash [typescript]
+interface OCLTargetURLResponse {
+    message: string; // message should support SIWE standard
+}
+
+const response: OCLTargetURLResponse = {
+    message: "messageToSign"
+}
+```
+
+- Post URL call will include the following body parameters and return an URL where to redirect the user
+
+```bash [typescript]
+POST https://example.com/api/one-click-login
+{
+  "signedMessage": "0x73dad687b4b384543119a61842b079fc8aecc27ce25e8abb8a8bf6430f799ad56774e7574d3038ed10a6a905994223aa2ac38efe54c17277b91b2905ec6839d71b",
+  "messageToSign":"messageToSign",
+  "address":"0x02489791e27a36b9C314c2c70d9d4103eB5ba415"
+}
+
+{
+	"url":"https://example.com"
+}
+```
+
+## 🔗 Link 
+
+| Name          | Description                                                                   | Method  | Required |
+| ------------- |:-----------------------------------------------------------------------------:| -------:| --------:|
+| targetUrl     | URL where to redirect the user                                                |  GET    | true     |

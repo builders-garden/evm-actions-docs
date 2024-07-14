@@ -1,3 +1,20 @@
-# What are EVM Actions?
+:::warning
+This project and documentation has been developed during ETHGlobal Brussels, it might be incomplete, imprecise or buggy. If you find any issue please report them to gm@builders.garden.
+:::
+
+# ⚡️ What are EVM Actions?
 
 EVM Actions are APIs that return actions - such as signing of messages or transactions - directly to a user. They are hosted at publicly accessible URLs and are therefore accessible by their URL for any client to interact with.
+
+![Untitled](https://i.imgur.com/AUyABWPl.png "Example of an EVM Action")
+
+Right now, 4 types of actions are supported:
+
+- **Transaction**: prompt the user to execute a transactions through an EOA
+  - Transfer 0.01 ETH to limone.eth
+  - Mint an NFT on Base
+- **Signatures:** prompt the user to sign a transaction through an EOA
+  - Sign a Safe transaction
+- **Links:** redirect the user to an external website
+- **1-click Login:** allow the user to quickly login into an external application with their connected EOA
+  - 1-click login into a webapp supporting Dynamic / Privy / Wallet Connect as auth or wallet providers
