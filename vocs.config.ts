@@ -24,4 +24,17 @@ export default defineConfig({
       link: '/shortcuts',
     },
   ],
+  socials: [ 
+    { 
+      icon: 'github', 
+      link: 'https://github.com/builders-garden', 
+    }, 
+    { 
+      icon: 'x', 
+      link: 'https://x.com/builders_garden', 
+    }, 
+  ], 
+  topNav: [ 
+    { text: 'Builders Garden', link: 'https://www.builders.garden/'}, 
+  ] 
 })
